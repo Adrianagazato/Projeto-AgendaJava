@@ -1,19 +1,25 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import org.example.model.ContatoModel;
+import org.example.service.AgendaService;
+
+import java.util.List;
+
 public class Main {
-    public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        public static void main(String[] args) {
+            AgendaService agenda = new AgendaService();
+            ContatoModel contato1 = new ContatoModel(1L, "João", "joao@email.com", "10000000");
+            ContatoModel contato2 = new ContatoModel(2L, "Maria", "maria@email.com", "000000000");
+            agenda.adicionarContato(contato1);
+            agenda.adicionarContato(contato2);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+            List<ContatoModel> contatos = agenda.listarContatos();
+            for (ContatoModel contato : contatos) {
+                System.out.println("ID: " + contato.getId());
+                System.out.println("Nome: " + contato.getNome());
+                System.out.println("Telefone: " + contato.getTelefone());
+                System.out.println("---------------------------");
+            }
         }
     }
-}
